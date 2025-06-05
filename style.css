@@ -7,8 +7,10 @@ html {
 body {
   /* background: linear-gradient(to bottom, #0f959ccb, #6da5cdc7),
     url(/src/Image1.png); */
-  background: linear-gradient(rgba(15, 149, 156, 0.7), rgba(109, 165, 205, 0.7)),
-    url(/src/Image2.png) left top/50% auto repeat-y;
+  /* background: linear-gradient(
+    rgba(15, 149, 156, 0.7),
+    rgba(109, 165, 205, 0.7)
+  ); */
   background-size: cover;
   margin: 0;
   font-size: 2rem;
@@ -19,14 +21,14 @@ body {
 }
 
 .clock {
-  width: 30rem;
-  height: 30rem;
-  border: 20px solid #072e33;
+  width: 40rem;
+  height: 40rem;
+  border: 20px solid #0f969c;
   border-radius: 50%;
-  margin: 50px auto;
+  margin: 70px auto;
   position: relative;
   padding: 2rem;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #6da5c0,
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #fbe4d8,
     inset 0 0 10px #05161a, 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -75,4 +77,145 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      ellipse at 20% 30%,
+      rgba(15, 149, 156, 0.831) 0%,
+      rgba(43, 18, 76, 0) 60%
+    ),
+    radial-gradient(
+      ellipse at 80% 50%,
+      rgba(43, 18, 76, 0.744) 0%,
+      rgba(0, 191, 255, 0) 70%
+    ),
+    radial-gradient(
+      ellipse at 50% 80%,
+      rgba(243, 159, 90, 0.74) 0%,
+      rgba(243, 159, 90, 0) 65%
+    ),
+    linear-gradient(135deg, #1d1a39 0%, #0a0520 100%);
+  background-blend-mode: overlay, screen, hard-light;
+  overflow: hidden;
+  animation: aurora-drift 25s infinite alternate ease-in-out;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+  animation: grid-shift 20s linear infinite;
+}
+
+@keyframes aurora-drift {
+  0% {
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    background-position: -10% -5%, 5% 10%, 0% 15%;
+    filter: hue-rotate(30deg) brightness(1.2);
+  }
+  100% {
+    background-position: 5% 10%, -10% -5%, 15% 0%;
+    filter: hue-rotate(60deg) brightness(1);
+  }
+}
+
+@keyframes grid-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes aurora-pulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+}
+
+.text {
+  color: #0f969c;
+  font-size: 10rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.tooltip {
+  width: 60rem;
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  background: #0b798a;
+  color: #190019;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  left: 50%;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent #03aac4 transparent;
+  transform: translateX(-50%);
+}
+
+.tooltip-container:hover .tooltip {
+  top: 120%;
+  opacity: 1;
+  visibility: visible;
+  background: #0e94a0;
+  transform: translate(-50%, -5px);
 }

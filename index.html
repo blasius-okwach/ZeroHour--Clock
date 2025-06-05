@@ -8,13 +8,26 @@
     <script src="/script.js"></script>
   </head>
   <body>
-    <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
-        <div class="center-dot"></div>
+    <div class="container">
+      <div class="clock">
+        <div class="clock-face">
+          <div class="hand hour-hand"></div>
+          <div class="hand min-hand"></div>
+          <div class="hand second-hand"></div>
+          <div class="center-dot"></div>
+        </div>
       </div>
+      <!-- From Uiverse.io by theleaderofenemy -->
+      <div class="tooltip-container">
+        <span class="text">Zero Hour</span>
+        <span class="tooltip"
+          >“Time is no longer kept by the stars, but by silicon minds and
+          blinking diodes.”</span
+        >
+      </div>
+
+      <audio id="tick-sound" src="/tick.wav" preload="auto"></audio>
+      <audio id="tock-sound" src="/tock.wav" preload="auto"></audio>
     </div>
   </body>
 </html>
